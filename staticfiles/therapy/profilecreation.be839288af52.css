@@ -1,0 +1,217 @@
+/* General Styles */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9f9;
+    color: #0f1419;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1.5rem;
+}
+
+/* Container */
+.profile-creation-container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+.profile-creation-container h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #0f1419;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Profile Picture Upload */
+.profile-picture-section {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.profile-picture-preview {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #e7e7e7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin: 0 auto 0.5rem;
+    border: 2px solid #1d9bf0;
+    cursor: pointer;
+}
+
+.profile-picture-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-picture-preview span {
+    font-size: 0.85rem;
+    color: #536471;
+}
+
+.profile-picture-section input[type="file"] {
+    display: none;
+}
+
+/* Input Fields */
+.profile-form-group {
+    margin-bottom: 1rem;
+}
+
+.profile-form-group label {
+    display: block;
+    font-size: 0.875rem;
+    color: #536471;
+    margin-bottom: 0.5rem;
+}
+
+.profile-form-group input,
+.profile-form-group textarea,
+.profile-form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #e1e8ed;
+    border-radius: 8px;
+    background-color: #f7f9f9;
+    outline: none;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.profile-form-group input::placeholder,
+.profile-form-group textarea::placeholder {
+    color: #8899a6;
+}
+
+.profile-form-group input:focus,
+.profile-form-group textarea:focus,
+.profile-form-group select:focus {
+    border-color: #1d9bf0;
+    background-color: #ffffff;
+}
+
+.profile-form-group textarea {
+    resize: none;
+    min-height: 100px;
+}
+
+/* Django form error styling */
+.errorlist {
+    color: #e0245e;
+    list-style-type: none;
+    padding: 0;
+    margin: 5px 0 0 0;
+    font-size: 0.8rem;
+}
+
+/* Specializations Checkbox Styling */
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 0.5rem;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #f7f9f9;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #e1e8ed;
+    transition: all 0.2s ease-in-out;
+    margin: 0;
+    width: auto;
+}
+
+.checkbox-group label:hover {
+    border-color: #1d9bf0;
+    background-color: #ffffff;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    cursor: pointer;
+}
+
+/* Django's default checkbox display might need adjustment */
+.checkbox-group ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0;
+}
+
+.checkbox-group li {
+    margin: 0;
+}
+
+/* Submit Button */
+.btn-submit {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #1d9bf0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    margin-top: 1rem;
+}
+
+.btn-submit:hover {
+    background-color: #1a8cd8;
+}
+
+/* Messages styling */
+.messages {
+    margin-bottom: 1rem;
+}
+
+.messages div {
+    padding: 0.8rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.success {
+    background-color: rgba(23, 191, 99, 0.1);
+    border-left: 4px solid #17bf63;
+    color: #17bf63;
+}
+
+.error {
+    background-color: rgba(224, 36, 94, 0.1);
+    border-left: 4px solid #e0245e;
+    color: #e0245e;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .profile-creation-container {
+        padding: 1.5rem;
+    }
+
+    .profile-picture-preview {
+        width: 100px;
+        height: 100px;
+    }
+}

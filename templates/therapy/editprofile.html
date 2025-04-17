@@ -1,0 +1,227 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'therapy/editprofile.css'%}">
+    <title>Edit Therapist Profile</title>
+</head>
+<body>
+    <div class="profile-creation-container">
+        <h2>Edit Your Profile</h2>
+        
+        <!-- Display messages -->
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!-- Custom Profile Picture Upload -->
+            <div class="profile-picture-section">
+                <label for="id_profile_image_new" class="profile-picture-preview">
+                    {% if form.instance.profile_image %}
+                        <img src="{{ form.instance.profile_image.url }}" alt="Profile Preview" id="previewImage">
+                    {% else %}
+                        <img src="#" alt="Profile Preview" id="previewImage" style="display: none;">
+                        <span id="placeholderText">Upload Picture</span>
+                    {% endif %}
+                </label>
+                
+                <!-- Hidden input for new image -->
+                <input type="file" id="id_profile_image_new" name="profile_image" accept="image/*" style="display: none;">
+                
+                <!-- Text indicator to change photo -->
+                <div class="change-photo-text">Change Photo</div>
+                
+                <!-- Keep the original field hidden but in the DOM for form processing -->
+                <div style="display: none;">
+                    {{ form.profile_image }}
+                </div>
+            </div>
+
+            <!-- Form Fields -->
+            <div class="profile-form-group">
+                <label for="{{ form.first_name.id_for_label }}">First Name</label>
+                {{ form.first_name }}
+                {% if form.first_name.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.first_name.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="profile-form-group">
+                <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                {{ form.last_name }}
+                {% if form.last_name.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.last_name.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="profile-form-group">
+                <label for="{{ form.gender.id_for_label }}">Gender</label>
+                {{ form.gender }}
+                {% if form.gender.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.gender.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="profile-form-group">
+                <label for="{{ form.date_of_birth.id_for_label }}">Date of Birth</label>
+                {{ form.date_of_birth }}
+                {% if form.date_of_birth.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.date_of_birth.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="profile-form-group">
+                <label for="{{ form.country.id_for_label }}">Country</label>
+                {{ form.country }}
+                {% if form.country.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.country.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="profile-form-group">
+                <label for="{{ form.bio.id_for_label }}">Bio</label>
+                {{ form.bio }}
+                {% if form.bio.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.bio.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="profile-form-group">
+                <label>Specializations</label>
+                <div class="checkbox-group">
+                    {{ form.specializations }}
+                </div>
+                {% if form.specializations.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.specializations.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="profile-form-group">
+                <label for="{{ form.years_of_experience.id_for_label }}">Years of Experience</label>
+                {{ form.years_of_experience }}
+                {% if form.years_of_experience.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.years_of_experience.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="profile-form-group">
+                <label for="{{ form.languages_spoken.id_for_label }}">Languages Spoken</label>
+                {{ form.languages_spoken }}
+                {% if form.languages_spoken.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.languages_spoken.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <!-- Buttons -->
+            <div class="button-container">
+                <button type="submit" class="btn-submit">Save Changes</button>
+                <a href="{% url 'therapy:therapistprofile' therapist_id=form.instance.id %}" class="btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript to handle custom file input
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get references to elements
+            const profileInputOriginal = document.querySelector("{{ form.profile_image.auto_id }}");
+            const profileInputNew = document.querySelector("#id_profile_image_new");
+            const previewImage = document.querySelector("#previewImage");
+            const placeholderText = document.querySelector("#placeholderText");
+            const changePhotoText = document.querySelector(".change-photo-text");
+            
+            // Hide the Django-generated file input widget if it exists
+            if (profileInputOriginal) {
+                // Find the parent element that contains the "Currently:" text
+                let parentElement = profileInputOriginal.parentElement;
+                if (parentElement && parentElement.textContent.includes("Currently:")) {
+                    parentElement.style.display = 'none';
+                }
+            }
+            
+            // Handle custom file input click
+            if (changePhotoText && profileInputNew) {
+                changePhotoText.addEventListener("click", function() {
+                    profileInputNew.click();
+                });
+            }
+            
+            // Preview image when a new file is selected
+            if (profileInputNew) {
+                profileInputNew.addEventListener("change", function() {
+                    const file = this.files[0];
+                    if (file) {
+                        // Update the original form field if it exists
+                        if (profileInputOriginal && profileInputOriginal.files) {
+                            // Create a new DataTransfer object
+                            const dataTransfer = new DataTransfer();
+                            dataTransfer.items.add(file);
+                            
+                            // Set the file to the original input
+                            profileInputOriginal.files = dataTransfer.files;
+                        }
+                        
+                        // Show preview
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            previewImage.src = e.target.result;
+                            previewImage.style.display = "block";
+                            if (placeholderText) {
+                                placeholderText.style.display = "none";
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{% extends 'base_home.html' %}
+{% load static %}
+{% block content %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<div class="container mt-4">
+    <h2>Our Therapists</h2>
+    
+    <div class="therapist-grid">
+        {% if therapists %}
+            {% for therapist in therapists %}
+            <div class="therapist-card">
+                <div class="therapist-header">
+                    <div class="profile-image-container">
+                        {% if therapist.profile_image %}
+                            <img class="profile-image" src="{{ therapist.profile_image.url }}" alt="{{ therapist.first_name }} {{ therapist.last_name }}">
+                        {% else %}
+                            <img class="profile-image" src="https://via.placeholder.com/150" alt="Default Profile">
+                        {% endif %}
+                    </div>
+                    <div class="therapist-info">
+                        <h3 class="therapist-name">{{ therapist.first_name }} {{ therapist.last_name }}</h3>
+                        <p class="therapist-username">@{{ therapist.user.username }}</p>
+                    </div>
+                </div>
+                
+                <p class="therapist-bio">{{ therapist.bio|truncatewords:20 }}</p>
+                
+                <div class="specializations-container">
+                    <strong>Specializations:</strong><br>
+                    {% for specialization in therapist.specializations.all %}
+                        <span class="specialization-tag">{{ specialization.name }}</span>
+                    {% endfor %}
+                </div>
+                
+                <div class="therapist-actions">
+                    <button class="action-button">
+                        <i class="far fa-comment"></i> Message
+                    </button>
+                    <button class="action-button">
+                        <i class="far fa-bookmark"></i> Save
+                    </button>
+                    <button class="action-button">
+                        <i class="fas fa-share"></i> Share
+                    </button>
+                </div>
+                
+                <a href="{% url 'therapy:profiledetail' therapist.id %}">
+                    <button class="view-profile">View Full Profile</button>
+                </a>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="empty-state">
+                <i class="fas fa-user-slash"></i>
+                <p>No therapists specializing in Addiction & Recovery found.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}EaseTalk{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'easetalk/landingpage.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+  <!-- Shared Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="{% url 'easetalk:index' %}"><span>EaseTalk</span></a>
+    </div>
+    <div class="hamburger-menu">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="nav-links">
+      <a href="{% url 'easetalk:index' %}">About</a>
+      <a href="{% url 'easetalk:index' %}">How It Works</a>
+      <a href="{% url 'easetalk:index' %}">Testimonials</a>
+    </div>
+  </nav>
+
+  {% block content %}{% endblock %}
+
+  <script>
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const navLinks = document.querySelector('.nav-links');
+    if (hamburgerMenu) {
+      hamburgerMenu.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        hamburgerMenu.classList.toggle('active');
+      });
+    }
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburgerMenu.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<nav id="main-nav">
+    <a href="{% url 'easetalk:mental_health' %}">Mental Health</a>
+    <a href="{% url 'easetalk:relationship' %}">Relationships</a>
+    <a href="{% url 'easetalk:trauma' %}">Trauma & Abuse</a>
+    <a href="{% url 'easetalk:selfesteem' %}">Self-Esteem</a>
+    <a href="{% url 'easetalk:spirituality' %}">Spirituality</a>
+    <a href="{% url 'easetalk:addiction' %}">Addiction & Recovery</a>
+
+    <div class="therapist-avatar-dropdown">
+        <button 
+            class="avatar-button"
+            hx-get="{% url 'easetalk:avatar_menu' %}"
+            hx-target="#dropdown-menu-container"
+            hx-trigger="click"
+            hx-swap="innerHTML">
+            {% if request.user.therapist.profile_image %}
+                <img src="{{ request.user.therapist.profile_image.url }}" alt="Profile" class="avatar-image">
+                {% elif request.user.anonymoususer.profile_image %}
+                <img src="{{ request.user.anonymoususer.profile_image.url }}" alt="Profile" class="avatar-image">
+            {% else %}
+                <i class="fas fa-user-circle"></i>
+            {% endif %}
+        </button>
+        <div id="dropdown-menu-container"></div>
+    </div>
+</nav>

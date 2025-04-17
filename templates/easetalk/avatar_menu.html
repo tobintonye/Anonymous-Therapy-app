@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="header-container">
+        <div class="dropdown-menu" hx-target="this" hx-swap="outerHTML">
+            {% if therapist %}
+                <a href="{% url 'therapy:therapistprofile' therapist.id %}">
+                    <i class="fa-solid fa-eye"></i> View Profile
+                </a>
+                <a href="{% url 'easetalk:chats' therapist.user.id %}">
+                    <i class="far fa-comment"></i> Message
+                </a>
+                <a href="{% url 'therapy:logout' %}">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            {% else %}
+                <a href="{% url 'easetalk:chats'  request.user.id %}">
+                    <i class="fas fa-sign-out-alt"></i>Messages
+                </a>
+                <a href="{% url 'anonymous:logout'%}">
+                    <i class="fas fa-sign-out-alt"></i>logout
+                </a>
+            {% endif %}
+           
+        </div>
+        <button class="mobile-nav-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    
+</body>
+</html>

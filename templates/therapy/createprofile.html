@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'therapy/profilecreation.css'%}">
+    <title>Create Therapist Profile</title>
+</head>
+<body>
+    <div class="profile-creation-container">
+        <h2>Create Your Profile</h2>
+        
+        <!-- Display messages -->
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!-- Profile Picture Upload -->
+            <div class="profile-picture-section">
+                <label for="{{ form.profile_image.id_for_label }}" class="profile-picture-preview">
+                    <img src="#" alt="Profile Preview" id="previewImage" style="display: none;">
+                    <span id="placeholderText">Upload Picture</span>
+                </label>
+                {{ form.profile_image }}
+            </div>
+
+            <!-- Form Fields -->
+            <div class="profile-form-group">
+                <label for="{{ form.first_name.id_for_label }}">First Name</label>
+                {{ form.first_name }}
+                {% if form.first_name.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.first_name.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="profile-form-group">
+                <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                {{ form.last_name }}
+                {% if form.last_name.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.last_name.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="profile-form-group">
+                <label for="{{ form.gender.id_for_label }}">Gender</label>
+                {{ form.gender }}
+                {% if form.gender.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.gender.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="profile-form-group">
+                <label for="{{ form.date_of_birth.id_for_label }}">Date of Birth</label>
+                {{ form.date_of_birth }}
+                {% if form.date_of_birth.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.date_of_birth.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="profile-form-group">
+                <label for="{{ form.country.id_for_label }}">Country</label>
+                {{ form.country }}
+                {% if form.country.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.country.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="profile-form-group">
+                <label for="{{ form.bio.id_for_label }}">Bio</label>
+                {{ form.bio }}
+                {% if form.bio.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.bio.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="profile-form-group">
+                <label>Specializations</label>
+                <div class="checkbox-group">
+                    {{ form.specializations }}
+                </div>
+                {% if form.specializations.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.specializations.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="profile-form-group">
+                <label for="{{ form.years_of_experience.id_for_label }}">Years of Experience</label>
+                {{ form.years_of_experience }}
+                {% if form.years_of_experience.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.years_of_experience.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="profile-form-group">
+                <label for="{{ form.languages_spoken.id_for_label }}">Languages Spoken</label>
+                {{ form.languages_spoken }}
+                {% if form.languages_spoken.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.languages_spoken.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-submit">Create Profile</button>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript to preview profile image
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the file input using the Django form field ID
+            const profileInput = document.querySelector("#{{ form.profile_image.id_for_label }}");
+            const previewImage = document.querySelector("#previewImage");
+            const placeholderText = document.querySelector("#placeholderText");
+            
+            if (profileInput) {
+                // Hide the file input but keep it functional
+                profileInput.style.display = 'none';
+                
+                // Preview the image when a file is selected
+                profileInput.addEventListener("change", function() {
+                    const file = this.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            previewImage.src = e.target.result;
+                            previewImage.style.display = "block";
+                            placeholderText.style.display = "none";
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            } else {
+                console.error("File input not found. Check the ID.");
+            }
+        });
+    </script>
+</body>
+</html>

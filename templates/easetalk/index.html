@@ -1,0 +1,136 @@
+{% extends 'indexbase.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Share your thoughts. <span class="highlight">Find support.</span></h1>
+        <p>A safe space for anonymous conversations with qualified therapists who are here to listen, understand, and help you navigate life's challenges.</p>
+        <div class="cta-buttons">
+          <a href="{% url 'anonymous:anonymoususer_signup' %}" class="cta-primary">Get Support Now</a>
+          <a href="#how-it-works" class="cta-secondary">Learn How It Works</a>
+        </div>
+      </div>
+      <!--
+      <div class="hero-image">
+        <div class="image-container">
+          <div class="blob"></div>
+          <img src="{% static 'easetalk/images/conversation.svg' %}" alt="People talking" class="main-image">
+        </div>
+      </div>
+     -->
+    </div>
+  </div>
+
+  <section id="about" class="about">
+    <div class="container">
+      <h2>Why Choose <span class="highlight">EaseTalk</span></h2>
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Complete Anonymity</h3>
+          <p>Share your thoughts without revealing your identity, creating a space free from judgment.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👩‍⚕️</div>
+          <h3>Licensed Therapists</h3>
+          <p>Connect with qualified professionals dedicated to supporting your mental wellbeing.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⏱️</div>
+          <h3>Available Anytime</h3>
+          <p>Get support when you need it most, without scheduling or long waiting lists.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" class="how-it-works">
+    <div class="container">
+      <h2>How It <span class="highlight">Works</span></h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Sign Up Anonymously</h3>
+          <p>Create an account with a username only - no personal details required.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Share Your Thoughts</h3>
+          <p>Express what's on your mind in a safe, confidential environment.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Connect With Therapists</h3>
+          <p>Get matched with professionals who can provide guidance and support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="join-options">
+    <div class="container">
+      <div class="join-card user">
+        <h3>Looking for Support?</h3>
+        <p>Talk anonymously with qualified therapists who understand what you're going through.</p>
+        <a href="{% url 'anonymous:anonymoususer_signup' %}" class="join-btn user-btn">Get Started Now</a>
+      </div>
+      <div class="join-card therapist">
+        <h3>Are You a Therapist?</h3>
+        <p>Join our platform to help people in need and grow your practice.</p>
+        <a href="{% url 'therapy:register' %}" class="join-btn therapist-btn">Join as a Therapist</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <h2>What Our <span class="highlight">Users Say</span></h2>
+      <div class="testimonial-cards">
+        <div class="testimonial">
+          <div class="quote">"EaseTalk gave me the courage to discuss issues I've never shared with anyone before. The anonymity made all the difference."</div>
+          <div class="user">Anonymous User</div>
+        </div>
+        <div class="testimonial">
+          <div class="quote">"As a therapist, connecting with people who truly need support has been incredibly rewarding. This platform bridges an important gap."</div>
+          <div class="user">Verified Therapist</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <div class="logo">EaseTalk</div>
+          <p>Safe, anonymous support when you need it most.</p>
+        </div>
+        <div class="footer-links">
+          <div class="link-group">
+            <h4>Platform</h4>
+            <a href="#">About Us</a>
+            <a href="#">How It Works</a>
+            <a href="#">Our Therapists</a>
+          </div>
+          <div class="link-group">
+            <h4>Legal</h4>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookie Policy</a>
+          </div>
+          <div class="link-group">
+            <h4>Contact</h4>
+            <a href="#">Support</a>
+            <a href="#">Feedback</a>
+            <a href="#">Partnerships</a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 EaseTalk. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+{% endblock %}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification Required</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            color: #000000;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        /* Card Styles */
+        .card {
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #dddddd;
+        }
+        
+        .card-header {
+            padding: 20px;
+            background-color: #000000;
+            color: white;
+        }
+        
+        .card-header h4 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+        
+        .card-body {
+            padding: 30px;
+        }
+        
+        .card-footer {
+            padding: 15px;
+            background-color: #f8f8f8;
+            text-align: center;
+            border-top: 1px solid #dddddd;
+        }
+        
+        /* Alert Styles */
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid #555555;
+            background-color: #f8f8f8;
+            border-radius: 4px;
+        }
+        
+        .alert h5 {
+            margin-top: 0;
+            color: #000000;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .alert p {
+            margin-bottom: 5px;
+        }
+        
+        .alert p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* List Styles */
+        .list-group {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .list-group-item {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #dddddd;
+        }
+        
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+        
+        /* Button Container */
+        .button-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        /* Improved Button Styles */
+        .btn-login {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: #000000;
+            color: white;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+        }
+        
+        .btn-login:hover {
+            background-color: #333333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-login:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Text Styles */
+        h6 {
+            font-size: 1.1rem;
+            color: #000000;
+            margin-bottom: 15px;
+        }
+        
+        strong {
+            color: #000000;
+        }
+        
+        /* Link Styles - Changed to blue */
+        a {
+            color: #0066cc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: #004499;
+            text-decoration: underline;
+        }
+        
+        .text-muted {
+            color: #777777;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+                padding: 0 15px;
+            }
+            
+            .card-body {
+                padding: 20px;
+            }
+            
+            .btn-login {
+                width: 100%;
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h4>Email Verification Required</h4>
+            </div>
+            <div class="card-body">
+                <div class="alert">
+                    <h5>Almost there!</h5>
+                    <p>We've sent a verification link to <strong>{{ email }}</strong>.</p>
+                    <p>Please check your email and click the verification link to complete your registration.</p>
+                </div>
+                
+                <div class="mt-4">
+                    <h6>Didn't receive the email?</h6>
+                    <ul class="list-group">
+                        <li class="list-group-item">Check your spam folder</li>
+                        <li class="list-group-item">Make sure the email address you provided is correct</li>
+                        <li class="list-group-item">If you still haven't received the email, <a href="{% url 'anonymous:resend_verification' %}">click here to resend</a></li>
+                    </ul>
+                </div>
+                
+                <div class="button-container">
+                    <a href="{% url 'anonymous:anonymoususer_login' %}" class="btn-login">
+                        Go to Login
+                    </a>
+                </div>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Need help? Contact our support team at support@easetalk.com</small>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

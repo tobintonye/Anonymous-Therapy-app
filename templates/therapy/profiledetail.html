@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'therapy/profile.css' %}">
+    
+</head>
+<body>
+    <header>
+        <a href="{% url 'easetalk:home' %}" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Therapists
+        </a>
+        <a href="{% url 'easetalk:home' %}" class="brand">
+            <i class="fas fa-heart-pulse"></i>
+            EaseTalk
+        </a>
+    </header>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="fullImage" class="full-image" src="" alt="Full size profile image">
+            <div class="zoom-hint">Use pinch gesture or mouse wheel to zoom</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-image-container">
+                {% if profile.profile_image %}
+                    <img class="profile-image" id="profileImage" src="{{ profile.profile_image.url }}" alt="{{ profile.first_name }} {{ profile.last_name }}">
+                {% else %}
+                    <img class="profile-image" id="profileImage" src="https://via.placeholder.com/150" alt="Default Profile">
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="profile-content">
+            <h1 class="profile-name">{{profile.first_name}} {{profile.last_name}}</h1>
+            <p class="profile-username">@{{profile.user.username}}</p>
+            
+            <div class="profile-bio">
+                {{profile.bio}}
+            </div>
+            
+            <div class="profile-section">
+                <h3>Languages Spoken</h3>
+                <p>{{ profile.languages_spoken }}</p>
+            </div>
+            
+            <div class="profile-section">
+                <h3>Specializations</h3>
+                <div class="specializations-grid">
+                    {% for specialization in profile.specializations.all %}
+                        <span class="specialization-tag">{{ specialization.name }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="profile-meta">
+                <div class="meta-item">
+                    <i class="fas fa-briefcase"></i>
+                    <span>{{ profile.years_of_experience }} years of experience</span>
+                </div>
+                
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Joined {{profile.created_at|date:"F Y" }}</span>
+                </div>
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="{% url 'easetalk:chats' profile.user.id %}" class="action-button">
+                <button class="contact-button">
+                    <i class="far fa-comment"></i> Start Therapy Session
+                </button>
+            </a>
+            </div>
+    </div>
+    <script src="{% static 'js/profiledetail.js' %}"></script>
+</body>
+</html>

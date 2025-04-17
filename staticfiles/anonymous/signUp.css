@@ -1,0 +1,153 @@
+/* Clean, professional base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+body {
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    color: #ffffff;
+}
+
+/* Clean form container styling */
+.form-container {
+    background-color: #000000;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.form-container h2 {
+    color: #ffffff;
+    margin-bottom: 32px;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 24px;
+}
+
+/* Clean, professional input styling */
+.signup-form input {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: #000000;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #ffffff;
+    transition: border-color 0.15s ease-in-out;
+}
+
+.signup-form input:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+    outline: none;
+}
+
+.signup-form input::placeholder {
+    color: #adb5bd;
+}
+
+/* Clean button styling */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+    border: none;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.btn-primary {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: 1px solid #dadce0;
+    border-radius: 800px;
+}
+
+.btn-primary:hover {
+    background-color: rgb(230, 230, 239);
+}
+
+/* Login link styling */
+.form-container p {
+    margin-top: 24px;
+    color: #ffffff;
+    font-size: 17px;
+    text-align: center;
+}
+
+.form-container a {
+    color: #0d6efd;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.form-container a:hover {
+    text-decoration: underline;
+}
+
+/* Clean message styling */
+.messages {
+    list-style: none;
+    width: 100%;
+    max-width: 480px;
+    margin-bottom: 24px;
+}
+
+.messages li {
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    border-left: 4px solid transparent;
+}
+
+.messages .error,
+.messages .danger {
+    background-color: #f8d7da;
+    border-left-color: #dc3545;
+    color: #58151c;
+}
+
+.messages .success {
+    background-color: #d1e7dd;
+    border-left-color: #198754;
+    color: #0f5132;
+}
+
+.messages .info {
+    background-color: #cff4fc;
+    border-left-color: #0dcaf0;
+    color: #055160;
+}
+
+.messages .warning {
+    background-color: #fff3cd;
+    border-left-color: #ffc107;
+    color: #664d03;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .form-container {
+        padding: 30px 24px;
+    }
+}

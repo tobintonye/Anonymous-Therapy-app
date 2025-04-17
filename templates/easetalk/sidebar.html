@@ -1,0 +1,39 @@
+<div>
+    <h3>Topics</h3>
+    <ul>
+      {% for topic in topics %}
+        <li>
+          <a href="{% url 'easetalk:sidebar_view' topic_id=topic.id %}">
+            {{ topic.name }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  
+  {% if subtopics %}
+  <div>
+    <h4>Subtopics under {{ selected_topic.name }}</h4>
+    <ul>
+      {% for subtopic in subtopics %}
+        <li>
+          {% if selected_topic %}
+            <a href="{% url 'easetalk:sidebar_view' topic_id=selected_topic.id subtopic_id=subtopic.id %}">
+              {{ subtopic.name }}
+            </a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+
+  <div>
+    <h3>Therapists</h3>
+    <ul>
+      {% for therapist in therapists %}
+        <li>{{ therapist.first_name }} {{ therapist.last_name }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  

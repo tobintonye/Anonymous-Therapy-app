@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ therapist.user.username }}'s Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'therapy/profile.css' %}">
+</head>
+<body>
+    <header>
+        <a href="{% url 'easetalk:home' %}" class="brand">
+            <i class="fas fa-heart-pulse"></i>
+            EaseTalk
+        </a>
+    </header>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="fullImage" class="full-image" src="" alt="Full size profile image">
+            <div class="zoom-hint">Use pinch gesture or mouse wheel to zoom</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-image-container">
+                {% if therapist.profile_image %}
+                    <img class="profile-image" id="profileImage" src="{{ therapist.profile_image.url }}" alt="{{ therapist.first_name }} {{ therapist.last_name }}">
+                {% else %}
+                    <img class="profile-image" id="profileImage" src="https://via.placeholder.com/150" alt="Default Profile">
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="profile-content">
+            <h1 class="profile-name">{{ therapist.first_name }} {{ therapist.last_name }}</h1>
+            <p class="profile-username">@{{ therapist.user.username }}</p>
+            
+            <div class="profile-bio">
+                {{ therapist.bio }}
+            </div>
+
+            <div class="profile-section">
+                <h3>Gender</h3>
+                <p>{{ therapist.gender }}</p>
+            </div>
+            
+            <div class="profile-section">
+                <h3>Languages Spoken</h3>
+                <p>{{ therapist.languages_spoken }}</p>
+            </div>
+            
+            <div class="profile-section">
+                <h3>Specializations</h3>
+                <div class="specializations-grid">
+                    {% for specialization in therapist.specializations.all %}
+                        <span class="specialization-tag">{{ specialization.name }}</span>
+                    {% empty %}
+                        <span class="specialization-tag">No specializations added</span>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="profile-meta">
+                <div class="meta-item">
+                    <i class="fas fa-briefcase"></i>
+                    <span>{{ therapist.years_of_experience }} years of experience</span>
+                </div>
+                
+                <div class="meta-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>{{ therapist.country }}</span>
+                </div>
+                
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Joined {{ therapist.created_at|date:"F Y" }}</span>
+                </div>
+            </div>
+            
+            <a href="{% url 'therapy:editprofile' %}" class="contact-button">
+                <i class="fas fa-edit"></i> Edit Profile
+            </a>
+        </div>
+    </div>
+    
+    <script src="{% static 'js/therapistprofile.js' %}"></script>
+</body>
+</html>

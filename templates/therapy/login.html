@@ -1,0 +1,38 @@
+{% extends 'indexbase.html' %}
+{% load static %}
+
+{% block title %}Login | EaseTalk{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'therapy/login_page.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-form">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <h2>Login to Your Account</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.email }} 
+            </div>
+            <div class="form-group">
+                {{ form.password }} 
+            </div>
+            <button type="submit" class="btn">Log In</button>
+            <div class="form-group remember-me">
+                {{ form.remember_me }} Remember me
+            </div>
+        </form>
+        <div class="login-links">
+            <p>Don't have an account? <a href="{% url 'therapy:register' %}">Register here</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
