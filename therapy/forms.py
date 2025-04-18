@@ -2,7 +2,8 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from .models import TherapistProfile, Specialization
-
+from django_recaptcha.fields import ReCaptchaField
+from django_recaptcha.widgets import ReCaptchaV2Checkbox  
 User = get_user_model() # return current active users 
 
 class SignUpform(UserCreationForm): 
@@ -10,7 +11,8 @@ class SignUpform(UserCreationForm):
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'email'}))
     password1 = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
     password2 = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'confirm password'}))
-
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
+    
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']

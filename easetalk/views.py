@@ -44,7 +44,7 @@ def home_view(request):
     random_therapists = random.sample(therapists, min(len(therapists), 15)) if therapists else []
     return render(request, 'easetalk/homepage.html', {'therapists': random_therapists})
 
-
+# not implemented yet
 # View to handle both topics and subtopics
 def sidebar_view(request, topic_id=None, subtopic_id=None):
     topics = Topic.objects.all()  # Fetch all topics

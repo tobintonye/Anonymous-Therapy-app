@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'therapy',
     'anonymous',
     'social_django',
+    'django_recaptcha',
 ]
 
 MIDDLEWARE = [
@@ -181,6 +182,9 @@ SECURE_SSL_REDIRECT = False
 SECURE_HSTS_SECONDS = 0
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
+
+RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
 
 # use env - django.core.mail.backends.smtp.EmailBackend -> django.core.mail.backends.console.EmailBackend
 EMAIL_BACKEND = env('EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')

@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 import uuid
 from django.contrib.auth import get_user_model
+from django_recaptcha.fields import ReCaptchaField
+from django_recaptcha.widgets import ReCaptchaV2Checkbox  
 
 User = get_user_model()
 
@@ -10,7 +12,8 @@ class AnonymousUserForm(UserCreationForm):
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'email'}))
     password1 = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'password'}))
     password2 = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'confirm password'}))
-
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
+    
     class Meta:
         model = User
         fields = ["email", "password1", "password2"]  # No need for username, it's generated for anonymous users
