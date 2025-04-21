@@ -12,7 +12,7 @@ class SignUpform(UserCreationForm):
     password1 = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
     password2 = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'confirm password'}))
     captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
-    
+
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
@@ -47,7 +47,7 @@ class LoginForm(forms.Form):
     def clean_username(self):
         email = self.cleaned_data.get('email')
 
-        # Check if the username does not exist 
+        # Check if the email does not exist 
         if not User.objects.filter(username=email).exists():
             raise forms.ValidationError("This username does not exist.")
         

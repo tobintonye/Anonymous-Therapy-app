@@ -15,7 +15,6 @@ User = get_user_model()
 def index(request):
     return render(request, 'easetalk/index.html')
 
-
 @login_required
 def avatar_menu(request):
     therapist = None
@@ -73,7 +72,7 @@ def sidebar_view(request, topic_id=None, subtopic_id=None):
     })
 
 
-# view therapist that Specialize in only specfic fields
+# view therapists that specialize in only specific fields
 def therapist_specialization_view(request, specialization_name, template_name):
     therapists = TherapistProfile.objects.filter(specializations__name=specialization_name)
     #print(therapists)

@@ -259,7 +259,7 @@ def createprofile(request):
                 specializations_objects = Specialization.objects.filter(id__in=selected_specializations)
                 therapist_profile.specializations.set(specializations_objects) # Set the specialization relationships  
                 messages.success(request, f"Profile created {request.user.username}")
-                return redirect('therapy:therapistprofile', username=request.user.username)
+                return redirect('therapy:therapistprofile', therapist_id=therapist_profile.id)
             except Exception as e:
                 messages.error(request, f'An error occured: {e}')
                 return redirect('therapy:createprofile')
