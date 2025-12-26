@@ -30,11 +30,11 @@ This application deals with sensitive mental health information. Please ensure:
 
 **This project is for educational/portfolio purposes and should not be used for actual therapy services without proper legal and security reviews.**
 
-
 ## 👤 Author
 
 **Tobin Tonye**  
 GitHub: [@tobintonye](https://github.com/tobintonye)
+X: tee_tobin
 
 ## 🙏 Acknowledgments
 
