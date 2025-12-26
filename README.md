@@ -34,6 +34,7 @@ This application deals with sensitive mental health information. Please ensure:
 
 **Tobin Tonye**  
 GitHub: [@tobintonye](https://github.com/tobintonye)
+
 X: [@tee_tobin]
 
 ## 🙏 Acknowledgments
