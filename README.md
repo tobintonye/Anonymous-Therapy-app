@@ -35,5 +35,5 @@ It is **not intended for real-world therapy or healthcare use** without proper l
 
 ## 👤 Author
 
-**Tony Tobin**  
+**Tonye Tobin**  
 GitHub: [@tobintonye](https://github.com/tobintonye)
